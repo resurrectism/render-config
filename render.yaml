@@ -1,7 +1,8 @@
 databases:
-  - name: resurrectism_production
+  - name: resurrectism_postgres
     databaseName: resurrectism_production
     user: resurrectism
+    region: frankfurt
 
 services:
   - type: web
@@ -17,7 +18,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: resurrectism_production
+          name: resurrectism_postgres
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
