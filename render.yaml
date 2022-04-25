@@ -6,15 +6,13 @@ databases:
 
 services:
   - type: web
+    env: ruby
     name: test_resurrectism_api
     region: frankfurt
-    env: ruby
     repo: https://github.com/resurrectism/api.git
     branch: main
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
-    domains:
-      - test.api.resurrectism.space
     envVars:
       - key: DATABASE_URL
         fromDatabase:
