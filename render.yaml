@@ -24,6 +24,7 @@ services:
         sync: false # placeholder for a value to be added in the dashboard
 
   - type: web
+    env: static
     name: test_resurrectism_frontend
     buildCommand: "yarn build"
     staticPublishPath: "./dist"
