@@ -11,6 +11,7 @@ services:
     branch: main
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
+    healthCheckPath: /health_check
     domains:
       - api.resurrectism.space
     envVars:
