@@ -1,14 +1,12 @@
 databases:
-  - name: test_resurrectism_postgres
+  - name: resurrectism_production
     databaseName: resurrectism_production
     user: resurrectism
-    region: frankfurt
 
 services:
   - type: web
     env: ruby
-    name: test_resurrectism_api
-    region: frankfurt
+    name: resurrectism
     repo: https://github.com/resurrectism/api.git
     branch: main
     buildCommand: "./bin/render-build.sh"
@@ -16,24 +14,22 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: test_resurrectism_postgres
+          name: resurrectism_production
           property: connectionString
       - key: RAILS_MASTER_KEY
-        sync: false # placeholder for a value to be added in the dashboard
+        sync: false
 
   - type: web
     env: static
-    name: test_resurrectism_frontend
+    name: resurrectism_frontend
     buildCommand: "yarn build"
     staticPublishPath: "./dist"
     branch: main
     repo: https://github.com/resurrectism/frontend.git
-    domains:
-      - test.resurrectism.space
     routes:
       - type: rewrite
         source: "/*"
         destination: "/index.html"
     envVars:
       - key: VITE_API_URL
-        value: "https://test.api.resurrectism.space"
+        value: "https://api.resurrectism.space"
