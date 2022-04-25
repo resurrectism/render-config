@@ -11,6 +11,8 @@ services:
     branch: main
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
+    domains:
+      - api.resurrectism.space
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -30,6 +32,8 @@ services:
       - type: rewrite
         source: "/*"
         destination: "/index.html"
+    domains:
+      - resurrectism.space
     envVars:
       - key: VITE_API_URL
         value: "https://api.resurrectism.space"
