@@ -10,7 +10,7 @@ services:
     name: resurrectism_api
     region: frankfurt
     repo: https://github.com/resurrectism/api.git
-    branch: main
+    branch: production
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     healthCheckPath: /health_check
@@ -29,7 +29,7 @@ services:
     name: resurrectism_frontend
     buildCommand: "yarn build"
     staticPublishPath: "./dist"
-    branch: main
+    branch: production
     repo: https://github.com/resurrectism/frontend.git
     routes:
       - type: rewrite
